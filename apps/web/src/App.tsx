@@ -4,6 +4,7 @@ import { SiteFooter } from "./components/SiteFooter";
 import { SiteHeader } from "./components/SiteHeader";
 import { AnalysisPage } from "./pages/AnalysisPage";
 import { AnalyzePage } from "./pages/AnalyzePage";
+import { BlueprintPage } from "./pages/BlueprintPage";
 import { LandingPage } from "./pages/LandingPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 
@@ -32,6 +33,7 @@ export function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/analyze" element={<AnalyzePage />} />
           <Route path="/analysis/:id" element={<AnalysisPage />} />
+          <Route path="/blueprints/:id" element={<BlueprintPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>

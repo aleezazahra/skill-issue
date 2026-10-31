@@ -3,6 +3,7 @@ import { ArrowUpRight, Check, CircleHelp, ExternalLink } from "lucide-react";
 import { componentLabels, ScoreBar } from "../../components/ScoreBar";
 import { cn } from "../../lib/cn";
 import { relativeTime } from "../../lib/format";
+import { BlueprintLauncher } from "../blueprints/BlueprintLauncher";
 
 const difficultyLabel: Record<RankedIssue["difficulty"]["level"], string> = {
   small: "Small",
@@ -11,7 +12,7 @@ const difficultyLabel: Record<RankedIssue["difficulty"]["level"], string> = {
   unknown: "Unknown scope",
 };
 
-export function IssueCard({ issue }: { issue: RankedIssue }) {
+export function IssueCard({ issue, analysisId }: { issue: RankedIssue; analysisId: string }) {
   const tone = issue.score >= 75 ? "text-green" : issue.score >= 55 ? "text-ink" : "text-secondary";
 
   return (
@@ -124,6 +125,12 @@ export function IssueCard({ issue }: { issue: RankedIssue }) {
             <ArrowUpRight className="h-3 w-3" aria-hidden="true" />
             Difficulty: {issue.difficulty.note}
           </p>
+
+          <BlueprintLauncher
+            analysisId={analysisId}
+            issueId={issue.issueId}
+            className="mt-4"
+          />
         </aside>
       </div>
     </article>

@@ -493,7 +493,7 @@ export function AnalysisPage() {
 
                 <div className="space-y-4">
                   {issues.map((issue) => (
-                    <IssueCard key={issue.issueId} issue={issue} />
+                    <IssueCard key={issue.issueId} issue={issue} analysisId={record.id} />
                   ))}
                 </div>
               </div>
