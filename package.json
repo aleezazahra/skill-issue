@@ -1,0 +1,25 @@
+{
+  "name": "opensource-matchmaker",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Evidence-backed open-source issue matching powered by Gemma 2.",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -n api,web -c green,cyan \"npm:dev:api\" \"npm:dev:web\"",
+    "dev:api": "npm run dev -w @osm/api",
+    "dev:web": "npm run dev -w @osm/web",
+    "build": "npm run build -w @osm/web",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "start": "npm run start -w @osm/api"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0",
+    "typescript": "^5.6.3"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
