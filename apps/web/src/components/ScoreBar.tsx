@@ -18,7 +18,7 @@ export function ScoreBar({
   compact?: boolean;
 }) {
   const tone =
-    value >= 75 ? "bg-green" : value >= 55 ? "bg-[#8FAE6B]" : "bg-[#6E7F70]";
+    value >= 75 ? "bg-green" : value >= 55 ? "bg-[#C7A85E]" : "bg-[#A9B4C4]";
   return (
     <div className={cn("space-y-1.5", compact && "space-y-1")}>
       <div className="flex items-baseline justify-between gap-3">

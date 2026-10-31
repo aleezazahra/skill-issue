@@ -52,7 +52,7 @@ export function RecentSessions() {
             </p>
             <Link
               to="/analyze"
-              className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-green transition-opacity hover:opacity-80"
+              className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-green-deep transition-opacity hover:opacity-80"
             >
               Run your first analysis
               <ArrowUpRight size={14} aria-hidden="true" />
@@ -69,11 +69,11 @@ export function RecentSessions() {
                   to={`/analysis/${session.analysisId}`}
                   className="group flex min-w-0 items-center gap-3"
                 >
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line bg-canvas text-muted transition-colors group-hover:text-green">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line bg-canvas text-muted transition-colors group-hover:text-green-deep">
                     <Github size={15} aria-hidden="true" />
                   </span>
                   <span className="min-w-0">
-                    <span className="block truncate text-sm font-medium text-ink transition-colors group-hover:text-green">
+                    <span className="block truncate text-sm font-medium text-ink transition-colors group-hover:text-green-deep">
                       @{session.username}
                     </span>
                     <span className="mt-0.5 flex flex-wrap items-center gap-x-2 font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
@@ -85,7 +85,7 @@ export function RecentSessions() {
                       <span
                         className={cn(
                           session.status === "failed" && "text-danger",
-                          session.status === "completed" && "text-green",
+                          session.status === "completed" && "text-green-deep",
                         )}
                       >
                         {statusCopy[session.status]}

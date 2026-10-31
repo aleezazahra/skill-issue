@@ -5,14 +5,20 @@ function readInt(value: string | undefined, fallback: number): number {
   return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
 }
 
+function readBool(value: string | undefined, fallback: boolean): boolean {
+  if (value === undefined) return fallback;
+  return ["1", "true", "yes", "on"].includes(value.trim().toLowerCase());
+}
+
 export const config = {
   port: readInt(process.env.PORT, 4000),
   webOrigin: process.env.WEB_ORIGIN ?? "http://localhost:5173",
   aiProvider: (process.env.AI_PROVIDER ?? "ollama").toLowerCase(),
   ollama: {
     baseUrl: (process.env.OLLAMA_BASE_URL ?? "http://localhost:11434").replace(/\/$/, ""),
-    model: process.env.OLLAMA_MODEL ?? "gemma2:9b",
-    fallbackModel: process.env.OLLAMA_FALLBACK_MODEL ?? "gemma2:2b",
+    model: process.env.OLLAMA_MODEL ?? "gemma3n:e4b",
+    fallbackModel: process.env.OLLAMA_FALLBACK_MODEL ?? "gemma3n:e2b",
+    think: readBool(process.env.OLLAMA_THINK, false),
   },
   openrouter: {
     baseUrl: (process.env.OPENROUTER_BASE_URL ?? "https://openrouter.ai/api/v1").replace(/\/$/, ""),

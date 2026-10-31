@@ -12,7 +12,8 @@ import {
   Star,
 } from "lucide-react";
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";import { Button } from "../components/Button";
+import { Link, useParams } from "react-router-dom";
+import { Button } from "../components/Button";
 import { EmptyState, ErrorNotice } from "../components/Feedback";
 import { StageProgress } from "../features/analysis/StageProgress";
 import { IssueCard } from "../features/issues/IssueCard";
@@ -287,7 +288,7 @@ export function AnalysisPage() {
             {completed && (
               <div className="surface panel-pad flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div className="flex items-start gap-3">
-                  <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-green/40 bg-green/10 text-green">
+                  <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-green/40 bg-green/10 text-green-deep">
                     <Check size={15} aria-hidden="true" />
                   </span>
                   <div>
@@ -353,7 +354,7 @@ export function AnalysisPage() {
                           href={repo.url}
                           target="_blank"
                           rel="noreferrer"
-                          className="inline-flex items-center gap-1.5 text-sm font-medium text-ink transition-colors hover:text-green"
+                          className="inline-flex items-center gap-1.5 text-sm font-medium text-ink transition-colors hover:text-green-deep"
                         >
                           {repo.name}
                           <ExternalLink size={12} aria-hidden="true" />

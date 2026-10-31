@@ -152,6 +152,46 @@ export interface BlueprintRecord {
   createdAt: string;
 }
 
+export type GraphNodeKind = "developer" | "repository" | "skill" | "issue";
+
+export interface GraphNode {
+  id: string;
+  kind: GraphNodeKind;
+  label: string;
+  sublabel?: string;
+  weight: number;
+  url?: string;
+  meta?: Record<string, string | number>;
+}
+
+export type GraphEdgeKind = "contributes-to" | "evidence" | "matches" | "targets";
+
+export interface GraphEdge {
+  id: string;
+  source: string;
+  target: string;
+  kind: GraphEdgeKind;
+  weight: number;
+  label?: string;
+}
+
+export interface AnalysisGraphStats {
+  repositories: number;
+  skills: number;
+  issues: number;
+  evidence: number;
+  edges: number;
+}
+
+export interface AnalysisGraph {
+  analysisId: string;
+  username: string;
+  generatedAt: string;
+  nodes: GraphNode[];
+  edges: GraphEdge[];
+  stats: AnalysisGraphStats;
+}
+
 export interface HealthResponse {
   status: "ok" | "degraded";
   uptimeSeconds: number;

@@ -68,7 +68,7 @@ function Section({
   return (
     <section className={cn("surface panel-pad", className)}>
       <div className="flex items-center gap-2 border-b border-line pb-4">
-        <span className="text-green" aria-hidden="true">
+        <span className="text-green-deep" aria-hidden="true">
           {icon}
         </span>
         <h2 className="text-base font-semibold tracking-[-0.01em]">{title}</h2>
@@ -90,7 +90,7 @@ function BulletList({
       {items.map((item) => (
         <li key={item} className="flex items-start gap-2.5 text-sm leading-relaxed text-secondary">
           {marker === "check" ? (
-            <Check className="mt-0.5 h-4 w-4 shrink-0 text-green" aria-hidden="true" />
+            <Check className="mt-0.5 h-4 w-4 shrink-0 text-green-deep" aria-hidden="true" />
           ) : (
             <CircleHelp className="mt-0.5 h-4 w-4 shrink-0 text-muted" aria-hidden="true" />
           )}
@@ -131,7 +131,7 @@ export function BlueprintView({ blueprint }: { blueprint: BlueprintRecord }) {
                 href={blueprint.issueUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="transition-colors hover:text-green"
+                className="transition-colors hover:text-green-deep"
               >
                 {blueprint.issueTitle}
               </a>

@@ -1,5 +1,4 @@
 import {
-  ArrowRight,
   ArrowUpRight,
   Check,
   CircleDot,
@@ -8,6 +7,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import { Button } from "../components/Button";
+import { HeroAnalyzer } from "../features/profile/HeroAnalyzer";
 import { RecentSessions } from "../features/profile/RecentSessions";
 
 const steps = [
@@ -41,28 +41,27 @@ const safeguards = [
 export function LandingPage() {
   return (
     <>
-      <section className="border-b border-line">
+      <section className="hero-pixel border-b border-line">
         <div className="page-shell py-20 sm:py-28 lg:py-32">
           <div className="mx-auto max-w-4xl text-center">
             <h1 className="text-balance text-[clamp(2.8rem,7vw,6rem)] leading-[1.02]">
               Find your open-source contribution,
-              <span className="text-green"> minus the skill issue.</span>
+              <span className="text-green-deep"> minus the skill issue.</span>
             </h1>
             <p className="display-copy mx-auto mt-7 max-w-2xl">
               Match your public GitHub work to real issues, understand why they fit and leave with
               a plan you can defend. No repository cloning. No inflated skill claims.
             </p>
-            <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <Button to="/analyze" size="lg">
-                Analyze GitHub profile
-                <ArrowRight size={17} aria-hidden="true" />
-              </Button>
-              <Button href="#how-it-works" variant="secondary" size="lg">
-                Explore how matching works
-              </Button>
-            </div>
+            <HeroAnalyzer />
+            <a
+              href="#how-it-works"
+              className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-secondary transition-colors hover:text-ink"
+            >
+              Explore how matching works
+              <ArrowUpRight size={14} aria-hidden="true" />
+            </a>
             <p className="mt-7 font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
-              Public evidence only · Password never requested · Local Gemma 2
+              Public evidence only · Password never requested · Local Gemma
             </p>
           </div>
         </div>
@@ -89,7 +88,7 @@ export function LandingPage() {
               return (
                 <article key={step.number} className="bg-surface p-6 sm:p-7">
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-[11px] tracking-[0.18em] text-green">
+                    <span className="font-mono text-[11px] tracking-[0.18em] text-green-deep">
                       {step.number}
                     </span>
                     <Icon className="h-4 w-4 text-muted" aria-hidden="true" />
@@ -118,7 +117,7 @@ export function LandingPage() {
             <div className="mt-8 grid gap-3 sm:grid-cols-2">
               {safeguards.map((item) => (
                 <div key={item} className="flex items-start gap-3">
-                  <Check className="mt-1 h-4 w-4 shrink-0 text-green" aria-hidden="true" />
+                  <Check className="mt-1 h-4 w-4 shrink-0 text-green-deep" aria-hidden="true" />
                   <span className="text-sm leading-relaxed text-secondary">{item}</span>
                 </div>
               ))}
@@ -132,7 +131,7 @@ export function LandingPage() {
           <div className="surface panel-pad flex flex-col gap-8 sm:p-10 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-xl">
               <p className="eyebrow mb-4 flex items-center gap-2">
-                <CircleDot className="h-3.5 w-3.5 text-green" aria-hidden="true" />
+                <CircleDot className="h-3.5 w-3.5 text-green-deep" aria-hidden="true" />
                 Start here
               </p>
               <h2 className="max-w-[18ch]">Start with a username.</h2>

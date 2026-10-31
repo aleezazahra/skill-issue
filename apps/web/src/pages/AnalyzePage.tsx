@@ -142,13 +142,13 @@ export function AnalyzePage() {
         <aside className="space-y-4 self-start">
           <div className="surface panel-pad">
             <div className="flex items-center gap-2 border-b border-line pb-4">
-              <FileSearch className="h-4 w-4 text-green" aria-hidden="true" />
+              <FileSearch className="h-4 w-4 text-green-deep" aria-hidden="true" />
               <h2 className="text-base font-semibold">What gets inspected</h2>
             </div>
             <ul className="mt-4 space-y-3">
               {inspected.map((item) => (
                 <li key={item} className="flex items-start gap-2.5 text-sm text-secondary">
-                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-green" aria-hidden="true" />
+                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-green-deep" aria-hidden="true" />
                   {item}
                 </li>
               ))}

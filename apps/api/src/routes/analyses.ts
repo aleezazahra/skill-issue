@@ -6,6 +6,7 @@ import { asyncHandler } from "../lib/asyncHandler";
 import { AppError } from "../lib/errors";
 import { SCORING_WEIGHTS } from "../matching/ranking";
 import { assertBlueprintIssue, generateBlueprint } from "../services/blueprint";
+import { buildAnalysisGraph } from "../services/graph";
 
 export const analysesRouter = Router();
 
@@ -78,6 +79,27 @@ analysesRouter.get("/:id/issues", (req, res, next) => {
       queries: entry.queries ?? [],
       issues: entry.ranked,
     });
+  } catch (error) {
+    next(error);
+  }
+});
+
+analysesRouter.get("/:id/graph", (req, res, next) => {
+  try {
+    const entry = analysisStore.get((req.params.id ?? ""));
+    if (!entry) {
+      throw new AppError("analysis_not_found", "That analysis does not exist.", 404);
+    }
+    if (!entry.profile || !entry.ranked) {
+      throw new AppError(
+        "graph_not_ready",
+        entry.record.status === "failed"
+          ? "This analysis failed before a graph could be built."
+          : "The relationship graph is still being generated.",
+        409,
+      );
+    }
+    res.json(buildAnalysisGraph(entry));
   } catch (error) {
     next(error);
   }

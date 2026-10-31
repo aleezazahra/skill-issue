@@ -13,7 +13,7 @@ const difficultyLabel: Record<RankedIssue["difficulty"]["level"], string> = {
 };
 
 export function IssueCard({ issue, analysisId }: { issue: RankedIssue; analysisId: string }) {
-  const tone = issue.score >= 75 ? "text-green" : issue.score >= 55 ? "text-ink" : "text-secondary";
+  const tone = issue.score >= 75 ? "text-green-deep" : issue.score >= 55 ? "text-ink" : "text-secondary";
 
   return (
     <article className="surface overflow-hidden">
@@ -45,7 +45,7 @@ export function IssueCard({ issue, analysisId }: { issue: RankedIssue; analysisI
               href={issue.url}
               target="_blank"
               rel="noreferrer"
-              className="transition-colors hover:text-green"
+              className="transition-colors hover:text-green-deep"
             >
               {issue.title}
             </a>
@@ -99,7 +99,7 @@ export function IssueCard({ issue, analysisId }: { issue: RankedIssue; analysisI
               <ul className="space-y-2">
                 {issue.reasons.map((reason) => (
                   <li key={reason} className="flex items-start gap-2 text-xs leading-relaxed text-secondary">
-                    <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-green" aria-hidden="true" />
+                    <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-green-deep" aria-hidden="true" />
                     {reason}
                   </li>
                 ))}

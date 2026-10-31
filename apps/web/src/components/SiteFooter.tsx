@@ -31,7 +31,7 @@ export function SiteFooter() {
           Skills are estimates supported by evidence, not certifications.
         </p>
         <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
-          Local Gemma 2 · GitHub REST
+          Local Gemma · GitHub REST
         </p>
       </div>
     </footer>
