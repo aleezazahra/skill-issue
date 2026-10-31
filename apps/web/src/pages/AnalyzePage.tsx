@@ -5,6 +5,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { Button } from "../components/Button";
 import { ErrorNotice } from "../components/Feedback";
 import { ApiError, api } from "../lib/api";
+import { rememberSession } from "../lib/recentSessions";
 
 const inspected = [
   "Public profile and non-fork repositories",
@@ -28,7 +29,14 @@ export function AnalyzePage() {
 
   const mutation = useMutation({
     mutationFn: (value: string) => api.startAnalysis(value),
-    onSuccess: (data) => {
+    onSuccess: (data, value) => {
+      rememberSession({
+        analysisId: data.analysisId,
+        username: value,
+        repositoriesAnalyzed: 0,
+        status: "queued",
+        updatedAt: new Date().toISOString(),
+      });
       navigate(`/analysis/${data.analysisId}`);
     },
     onError: (value) => {

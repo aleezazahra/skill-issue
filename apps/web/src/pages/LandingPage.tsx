@@ -8,13 +8,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import { Button } from "../components/Button";
-import { ScoreBar } from "../components/ScoreBar";
-
-const exampleSkills = [
-  { name: "TypeScript", confidence: 87, note: "Demonstrated" },
-  { name: "React", confidence: 81, note: "Demonstrated" },
-  { name: "Node.js", confidence: 72, note: "Observed" },
-];
+import { RecentSessions } from "../features/profile/RecentSessions";
 
 const steps = [
   {
@@ -37,32 +31,28 @@ const steps = [
   },
 ];
 
-const weights = [
-  { label: "Skill fit", value: 35 },
-  { label: "Issue clarity", value: 25 },
-  { label: "Scope fit", value: 20 },
-  { label: "Activity signal", value: 10 },
-  { label: "Ecosystem fit", value: 10 },
+const safeguards = [
+  "Open, non-pull-request issues only",
+  "Deterministic weighted score before any AI explanation",
+  "Verified file paths only; unverified paths are omitted",
+  "'Good first issue' is treated as a hint, not a guarantee",
 ];
 
 export function LandingPage() {
   return (
     <>
       <section className="border-b border-line">
-        <div className="page-shell grid items-center gap-14 py-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20 lg:py-24">
-          <div>
-            <p className="eyebrow mb-7 flex items-center gap-2.5">
-              <span className="status-dot" aria-hidden="true" />
-              Evidence-backed open source matching
-            </p>
-            <h1 className="max-w-[14ch] text-balance">
-              Your next open-source contribution is <span className="text-green">out there.</span>
+        <div className="page-shell py-20 sm:py-28 lg:py-32">
+          <div className="mx-auto max-w-4xl text-center">
+            <h1 className="text-balance text-[clamp(2.8rem,7vw,6rem)] leading-[1.02]">
+              Find your open-source contribution,
+              <span className="text-green"> minus the skill issue.</span>
             </h1>
-            <p className="display-copy mt-7 max-w-xl">
-              Match your GitHub experience to real issues, understand why they fit and leave with a
-              plan to contribute. No repository cloning. No inflated skill claims.
+            <p className="display-copy mx-auto mt-7 max-w-2xl">
+              Match your public GitHub work to real issues, understand why they fit and leave with
+              a plan you can defend. No repository cloning. No inflated skill claims.
             </p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <Button to="/analyze" size="lg">
                 Analyze GitHub profile
                 <ArrowRight size={17} aria-hidden="true" />
@@ -71,83 +61,14 @@ export function LandingPage() {
                 Explore how matching works
               </Button>
             </div>
-            <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
-              Public evidence only · Password never requested
+            <p className="mt-7 font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
+              Public evidence only · Password never requested · Local Gemma 2
             </p>
-          </div>
-
-          <div className="relative">
-            <div className="absolute -inset-3 rounded-[22px] border border-line/60 bg-grid opacity-60" aria-hidden="true" />
-            <div className="relative surface overflow-hidden">
-              <div className="flex items-center justify-between border-b border-line px-5 py-3.5">
-                <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted">
-                  Illustrative profile
-                </span>
-                <span className="chip chip-accent">Evidence</span>
-              </div>
-
-              <div className="space-y-5 p-5">
-                <div className="flex items-center justify-between gap-3">
-                  <div>
-                    <p className="text-sm font-semibold text-ink">@sample-developer</p>
-                    <p className="text-xs text-muted">6 repositories inspected</p>
-                  </div>
-                  <span className="rounded-full border border-line px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-secondary">
-                    Gemma 2
-                  </span>
-                </div>
-
-                <div className="space-y-3">
-                  {exampleSkills.map((skill) => (
-                    <div key={skill.name} className="space-y-1.5">
-                      <div className="flex items-center justify-between text-xs">
-                        <span className="font-medium text-secondary">{skill.name}</span>
-                        <span className="font-mono text-[11px] text-muted">
-                          {skill.confidence}% · {skill.note}
-                        </span>
-                      </div>
-                      <div className="h-1 overflow-hidden rounded-full bg-canvas">
-                        <div
-                          className="h-full rounded-full bg-green"
-                          style={{ width: `${skill.confidence}%` }}
-                        />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="rounded-[10px] border border-line bg-canvas/60 p-4">
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="space-y-1">
-                      <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
-                        example/react-dashboard
-                      </p>
-                      <p className="text-sm font-medium leading-snug text-ink">
-                        Improve keyboard navigation in the data table
-                      </p>
-                    </div>
-                    <div className="shrink-0 text-right">
-                      <p className="text-2xl font-light tabular-nums text-green">82</p>
-                      <p className="font-mono text-[9px] uppercase tracking-[0.12em] text-muted">match</p>
-                    </div>
-                  </div>
-                  <div className="mt-3.5 grid grid-cols-2 gap-x-4 gap-y-2">
-                    <ScoreBar value={90} label="Skill fit" compact />
-                    <ScoreBar value={85} label="Clarity" compact />
-                    <ScoreBar value={75} label="Scope" compact />
-                    <ScoreBar value={80} label="Ecosystem" compact />
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-2 text-xs text-muted">
-                  <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-green" aria-hidden="true" />
-                  <span>Reasons and unknowns stay visible. Illustrative values, not a real profile.</span>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
+
+      <RecentSessions />
 
       <section id="how-it-works" className="scroll-mt-24 border-b border-line">
         <div className="page-shell py-16 sm:py-20">
@@ -183,54 +104,25 @@ export function LandingPage() {
       </section>
 
       <section id="scoring" className="scroll-mt-24 border-b border-line">
-        <div className="page-shell grid gap-12 py-16 sm:py-20 lg:grid-cols-2 lg:gap-20">
-          <div>
+        <div className="page-shell py-16 sm:py-20">
+          <div className="max-w-3xl">
             <p className="eyebrow mb-4">The ranking engine</p>
             <h2 className="max-w-[16ch]">Explainable by construction.</h2>
-            <p className="mt-6 max-w-lg text-sm leading-relaxed text-secondary">
-              Every recommendation exposes its component scores and the reasons behind them. Missing
-              information is recorded as unknown rather than silently scored as a perfect match.
+            <p className="mt-6 max-w-xl text-sm leading-relaxed text-secondary">
+              Every recommendation exposes its component scores and the reasons behind them.
+              Missing information is recorded as unknown rather than silently scored as a perfect
+              match. Scores are normalized from 0 to 100, and an inactive repository receives a
+              weak activity signal without being automatically excluded.
             </p>
 
-            <div className="mt-8 space-y-3">
-              {[
-                "Open, non-pull-request issues only",
-                "Deterministic weighted score before any AI explanation",
-                "Verified file paths only; unverified paths are omitted",
-                "'Good first issue' is treated as a hint, not a guarantee",
-              ].map((item) => (
+            <div className="mt-8 grid gap-3 sm:grid-cols-2">
+              {safeguards.map((item) => (
                 <div key={item} className="flex items-start gap-3">
                   <Check className="mt-1 h-4 w-4 shrink-0 text-green" aria-hidden="true" />
-                  <span className="text-sm text-secondary">{item}</span>
+                  <span className="text-sm leading-relaxed text-secondary">{item}</span>
                 </div>
               ))}
             </div>
-          </div>
-
-          <div className="surface panel-pad self-start">
-            <div className="flex items-center justify-between border-b border-line pb-4">
-              <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted">
-                MVP weighting
-              </span>
-              <span className="chip">Configurable</span>
-            </div>
-            <div className="mt-5 space-y-4">
-              {weights.map((weight) => (
-                <div key={weight.label} className="flex items-center gap-4">
-                  <span className="w-32 shrink-0 text-sm text-secondary">{weight.label}</span>
-                  <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-canvas">
-                    <div className="h-full rounded-full bg-green" style={{ width: `${weight.value * 2.5}%` }} />
-                  </div>
-                  <span className="w-9 text-right font-mono text-xs text-muted">
-                    {weight.value}%
-                  </span>
-                </div>
-              ))}
-            </div>
-            <p className="mt-6 border-t border-line pt-4 text-xs leading-relaxed text-muted">
-              Scores are normalized from 0 to 100. An inactive repository receives a weak activity
-              signal but is not automatically excluded.
-            </p>
           </div>
         </div>
       </section>

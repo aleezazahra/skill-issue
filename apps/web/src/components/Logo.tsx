@@ -6,7 +6,7 @@ export function Logo({ compact = false, className }: { compact?: boolean; classN
     <Link
       to="/"
       className={cn("inline-flex items-center gap-2.5 text-ink", className)}
-      aria-label="OpenSource Matchmaker home"
+      aria-label="skillissue home"
     >
       <span
         aria-hidden="true"
@@ -17,8 +17,8 @@ export function Logo({ compact = false, className }: { compact?: boolean; classN
       </span>
       {!compact && (
         <span className="flex flex-col leading-none">
-          <span className="text-[0.95rem] font-semibold tracking-[-0.02em]">OpenSource</span>
-          <span className="font-mono text-[9px] uppercase tracking-[0.24em] text-muted">Matchmaker</span>
+          <span className="text-[1.05rem] font-semibold lowercase tracking-[-0.03em]">skillissue</span>
+          <span className="mt-0.5 font-mono text-[9px] uppercase tracking-[0.24em] text-muted">OpenSource Matchmaker</span>
         </span>
       )}
     </Link>

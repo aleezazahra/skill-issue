@@ -11,9 +11,8 @@ import {
   RefreshCw,
   Star,
 } from "lucide-react";
-import { useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import { Button } from "../components/Button";
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";import { Button } from "../components/Button";
 import { EmptyState, ErrorNotice } from "../components/Feedback";
 import { StageProgress } from "../features/analysis/StageProgress";
 import { IssueCard } from "../features/issues/IssueCard";
@@ -21,6 +20,7 @@ import { SkillCard } from "../features/skills/SkillCard";
 import { ApiError, api } from "../lib/api";
 import { cn } from "../lib/cn";
 import { compactNumber, formatDate, relativeTime } from "../lib/format";
+import { rememberSession } from "../lib/recentSessions";
 
 type Tab = "overview" | "skills" | "issues";
 
@@ -69,6 +69,18 @@ export function AnalysisPage() {
 
   const record = analysisQuery.data;
   const completed = record?.status === "completed";
+
+  useEffect(() => {
+    if (!record) return;
+    if (record.status !== "completed" && record.status !== "failed") return;
+    rememberSession({
+      analysisId: record.id,
+      username: record.username,
+      repositoriesAnalyzed: record.repositoriesAnalyzed,
+      status: record.status,
+      updatedAt: record.updatedAt,
+    });
+  }, [record]);
 
   const skillsQuery = useQuery<{ profile: SkillProfile }>({
     queryKey: ["skills", id],
