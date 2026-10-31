@@ -1,20 +1,29 @@
 ![alt text](image-1.png)
 
 ![alt text](image-3.png)
-# SKillIssue
+
+# SkillIssue
 Stop searching for issues. Start shipping contributions.
 
-OpenSource Matchmaker analyzes a public GitHub profile, builds an evidence-backed skill
+Skillissue analyzes a public GitHub profile, builds an evidence-backed skill
 profile, discovers real open issues, ranks them with a deterministic, explainable score, and
 generates a grounded contribution blueprint for a selected issue.
+
+## Features
+- simple to use and a cool cute ui 
+- no login or github integration js asks for a username to analyze stuff
+- uses gemma 4 to generate blueprint of the issues /PRS and stuff
+- made by highschoolers :3
+- gives a match score too so one can see which fits them perfectly 
 
 ## Stack
 
 - React + Vite + TypeScript + Tailwind CSS + TanStack Query + React Router
 - Node.js + Express + TypeScript + Zod
-- Gemma 2 via Ollama (local) with an OpenRouter fallback adapter
+- Gemma 4 via Ollama (local) with an OpenRouter fallback adapter
 - GitHub REST API
 - In-memory persistence (MongoDB-ready seam in `apps/api/src/db/store.ts`)
+- Opencode 
 
 ## Repository layout
 
@@ -74,15 +83,7 @@ API keys stay server-side. Nothing provider-related is exposed to the browser.
 | `GET` | `/api/analyses/:id/blueprints` | List saved blueprints |
 | `GET` | `/api/health` | Service and provider availability |
 
-## Design principles
 
-- GitHub supplies facts. Application code computes the score. The model explains.
-- Skills are labeled `observed`, `demonstrated` or `inferred`; confidence is the system's
-  certainty, not objective proficiency.
-- Unknown information never receives a perfect score.
-- The model never invents issue URLs, labels, file paths or repository contents.
-- Every model response is validated with Zod before display.
-- If AI is unavailable, deterministic fallbacks keep the end-to-end flow usable.
 
 ## Scoring
 
@@ -94,13 +95,7 @@ Match = 0.35 × Skill Fit
       + 0.10 × Ecosystem Fit
 ```
 
-Weights live in `apps/api/src/matching/engine.ts`.
 
-## Local inference note
-
-A hosted website cannot reach a visitor's `localhost` Ollama endpoint. For a local demo, run
-the API and Ollama on the same machine. For a public deployment, configure OpenRouter or a
-secured inference service.
 
 ## Build
 
