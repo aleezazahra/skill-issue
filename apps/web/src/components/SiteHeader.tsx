@@ -12,7 +12,7 @@ export function SiteHeader() {
   return (
     <header className="border-b border-line bg-canvas">
       <div className="page-shell flex h-[72px] items-center justify-between gap-4">
-        <Logo />
+        
 
         <nav className="hidden items-center gap-1 md:flex" aria-label="Primary">
           {navItems.map((item) =>

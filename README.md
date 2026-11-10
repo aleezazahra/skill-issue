@@ -13,7 +13,6 @@ generates a grounded contribution blueprint for a selected issue.
 - simple to use and a cool cute ui 
 - no login or github integration js asks for a username to analyze stuff
 - uses gemma 4 to generate blueprint of the issues /PRS and stuff
-- made by highschoolers :3
 - gives a match score too so one can see which fits them perfectly 
 
 ## Stack
@@ -24,7 +23,13 @@ generates a grounded contribution blueprint for a selected issue.
 - GitHub REST API
 - In-memory persistence (MongoDB-ready seam in `apps/api/src/db/store.ts`)
 - Opencode 
+## ScreenShots :
+![alt text](image-4.png)
+![alt text](image-5.png)
+![alt text](image-6.png)
 
+![alt text](image-7.png)
+![alt text](image-8.png)
 ## Repository layout
 
 ```text
@@ -36,7 +41,7 @@ packages/
 docs/        Architecture and demo script
 ```
 
-## Quick start
+## Running this locally
 
 ```bash
 npm install
@@ -69,19 +74,6 @@ See `.env.example`. Key variables:
 | `MONGODB_URI` | Reserved for persistence |
 
 API keys stay server-side. Nothing provider-related is exposed to the browser.
-
-## API
-
-| Method | Path | Purpose |
-| --- | --- | --- |
-| `POST` | `/api/analyses` | Queue an analysis for `{ "username": "..." }` |
-| `GET` | `/api/analyses/:id` | Status + profile + ranked issues |
-| `GET` | `/api/analyses/:id/skills` | Skills and evidence bundle |
-| `GET` | `/api/analyses/:id/issues` | Ranked issue recommendations |
-| `POST` | `/api/analyses/:id/blueprints` | Generate a blueprint for `{ "issueId": "..." }` |
-| `GET` | `/api/blueprints/:id` | Fetch a saved blueprint |
-| `GET` | `/api/analyses/:id/blueprints` | List saved blueprints |
-| `GET` | `/api/health` | Service and provider availability |
 
 
 

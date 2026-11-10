@@ -95,9 +95,7 @@ export function AnalyzePage() {
                   disabled={mutation.isPending}
                 />
               </div>
-              <p id="username-hint" className="mt-2 text-xs text-muted">
-                Public profiles only. A GitHub token on the server raises API limits.
-              </p>
+             
             </div>
 
             {error && (

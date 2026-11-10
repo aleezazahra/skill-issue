@@ -6,7 +6,7 @@ export function SiteFooter() {
     <footer className="mt-20 border-t border-line">
       <div className="page-shell flex flex-col gap-8 py-10 sm:flex-row sm:items-start sm:justify-between">
         <div className="max-w-sm space-y-3">
-          <Logo />
+          
           <p className="text-sm leading-relaxed text-muted">
             Evidence-backed issue matching for developers who want a defensible place to start.
           </p>

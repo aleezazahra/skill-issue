@@ -50,7 +50,7 @@ export function LandingPage() {
             </h1>
             <p className="display-copy mx-auto mt-7 max-w-2xl">
               Match your public GitHub work to real issues, understand why they fit and leave with
-              a plan you can defend. No repository cloning. No inflated skill claims.
+              a plan you can defend. 
             </p>
             <HeroAnalyzer />
             <a
@@ -60,9 +60,7 @@ export function LandingPage() {
               Explore how matching works
               <ArrowUpRight size={14} aria-hidden="true" />
             </a>
-            <p className="mt-7 font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
-              Public evidence only · Password never requested · Local Gemma
-            </p>
+         
           </div>
         </div>
       </section>
@@ -155,3 +153,6 @@ export function LandingPage() {
     </>
   );
 }
+   <p className="mt-7 font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
+              made by four highschoolers :3 
+            </p>
